@@ -17,6 +17,7 @@ firstColumn.map(i => secondColumn.push(Number(Math.pow((i - tAverage), 2).toFixe
 
 sum = 0;
 secondColumn.map(i => sum += i);
+const fault = Math.sqrt(sum / N / (N - 1))
 const dispersion = Math.sqrt(sum / N);
 const maxHeight = 1 / (Math.sqrt(2 * Math.PI) * dispersion)
 
@@ -75,4 +76,6 @@ for (let i = 0; i < 3; i++) {
   table3.push([s, e, sum, sum / N])
 }
 
-console.log(table3)
+// console.log(table3)
+console.log(fault, N, sum);
+
