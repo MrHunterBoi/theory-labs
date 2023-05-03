@@ -1,4 +1,4 @@
-const plotly = require('plotly')("Huntah", "36jaRqwzNzlj6iQtLA6k")
+const plotly = require('plotly')("MrHuntah", "gc88GvJUiL5oeeZX7ghM")
 const N = 100
 let firstColumn = [], secondColumn = [], thirdColumn = [], firstColumnB = [], secondColumnB = [], thirdColumnB = [];
 
@@ -97,10 +97,10 @@ const data = {trace, trace2}
 
 const layout = {fileopt: "overwrite", filename: "simple-node-example"};
 
-// plotly.plot(data, layout, function (err, msg) {
-//   if (err) return console.log(err);
-//   console.log('URL:', msg.url);
-// });
+plotly.plot(data, layout, function (err, msg) {
+  if (err) return console.log(err);
+  console.log('URL:', msg.url);
+});
 
 logTable([firstColumn, secondColumn, thirdColumn], ['t', '(t - {t})^2', 'p']);
 logTable2([firstColumnB, secondColumnB, thirdColumnB], ['Δn', 'Δn/n/Δt', 'p'], intervals);
