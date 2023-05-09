@@ -1,10 +1,13 @@
-const plotly = require('plotly')("Huntah", "36jaRqwzNzlj6iQtLA6k")
+const plotly = require('plotly')("Huntah", "36jaRqwzNzlj6iQtLA6k");
+const fs = require('fs');
 const N = 200
 
 let numbers = [];
 
 for (let i = 0; i < N; i++) {
-  numbers.push(parseFloat((Math.random() * 100 + 30).toFixed(1)));
+  let rnd = parseFloat((Math.random() * 100 + 30).toFixed(1))
+  numbers.push(rnd);
+  fs.writeFile('numbers.txt', `${rnd} `, { flag: 'a+' }, err => {});
 }
 
 numbers.sort((a, b) => a - b);
@@ -27,7 +30,7 @@ for (let i = min - h / 2; i < numbers[N - 1]; i += h) {
   k++;
 }
 
-// plotHistogram(numbers, min - h / 2, max, h, data)
+plotHistogram(numbers, min - h / 2, max, h, data)
 logTable(data, ['Xi*', 'ni', 'ωi', 'ωi/h'], intervals);
 additionalCalculations(data, N)
 
@@ -59,16 +62,6 @@ function additionalCalculations (data, N) {
   });
   D /= N - 1
   console.log(`D = ${D}`)
-  
-
-  const s = (32 - 43.67)/9.309
-  let delta = s / 100, st = 0, sum = 0;
-  while (s <= st) {
-    sum += Math.exp(-1 * Math.pow(st, 2) / 2);
-    console.log(Math.exp(-1 * Math.pow(st, 2) / 2))
-    st += delta;
-  }
-  console.log(`int: ${sum / Math.sqrt(2 * Math.PI)}`)
 }
 
 function plotHistogram(values, min, max, h, result) {
@@ -117,6 +110,6 @@ function plotHistogram(values, min, max, h, result) {
 
   plotly.plot(data, layout, function (err, msg) {
     if (err) return console.log(err);
-    // console.log('URL:', msg.url);
+    console.log('URL:', msg.url);
   });
 }
